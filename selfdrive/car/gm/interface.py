@@ -37,6 +37,7 @@ class CarInterface(CarInterfaceBase):
     INDI_enabled = params.get_bool("INDI_Selected")
 
     if LQR_enabled:
+      ret.lateralTuning.init('lqr')
       ret.lateralTuning.lqr.scale = 1680.
       ret.lateralTuning.lqr.ki = 0.01
       ret.lateralTuning.lqr.dcGain = 0.002858
