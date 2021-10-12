@@ -162,6 +162,10 @@ def thermald_thread():
   registered_count = 0
   wifiIpAddress = 'N/A'
 
+
+114
+
+  set_eon_fan(fan_speed // 16384)
   current_filter = FirstOrderFilter(0., CURRENT_TAU, DT_TRML)
   cpu_temp_filter = FirstOrderFilter(0., CPU_TEMP_TAU, DT_TRML)
   pandaState_prev = None
@@ -409,13 +413,13 @@ def thermald_thread():
     msg.deviceState.chargingDisabled = power_monitor.should_disable_charging(pandaState, off_ts)
 
     # 양민님 충전로직
-    if EON:
-      if power_monitor.car_voltage_mV is None or msg.deviceState.batteryPercent is None :
-        HARDWARE.set_battery_charging(False)
-      elif HARDWARE.get_battery_charging and (msg.deviceState.batteryPercent > EON_BATT_MAX_SOC or power_monitor.car_voltage_mV < EON_BATT_CHARGE_PAUSE and not should_start):
-        HARDWARE.set_battery_charging(False)
-      elif not HARDWARE.get_battery_charging and (msg.deviceState.batteryPercent < EON_BATT_MIN_SOC and power_monitor.car_voltage_mV > EON_BATT_CHARGE_PAUSE):
-        HARDWARE.set_battery_charging(True)
+    #if EON:
+     # if power_monitor.car_voltage_mV is None or msg.deviceState.batteryPercent is None :
+      #  HARDWARE.set_battery_charging(False)
+      #elif HARDWARE.get_battery_charging and (msg.deviceState.batteryPercent > EON_BATT_MAX_SOC or power_monitor.car_voltage_mV < EON_BATT_CHARGE_PAUSE and not should_start):
+      #  HARDWARE.set_battery_charging(False)
+      #elif not HARDWARE.get_battery_charging and (msg.deviceState.batteryPercent < EON_BATT_MIN_SOC and power_monitor.car_voltage_mV > EON_BATT_CHARGE_PAUSE):
+      #  HARDWARE.set_battery_charging(True)
 
     # Check if we need to shut down
     if power_monitor.should_shutdown(pandaState, off_ts, started_seen):
