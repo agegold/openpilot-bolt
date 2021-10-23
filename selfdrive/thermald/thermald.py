@@ -162,10 +162,6 @@ def thermald_thread():
   registered_count = 0
   wifiIpAddress = 'N/A'
 
-
-114
-
-  set_eon_fan(fan_speed // 16384)
   current_filter = FirstOrderFilter(0., CURRENT_TAU, DT_TRML)
   cpu_temp_filter = FirstOrderFilter(0., CPU_TEMP_TAU, DT_TRML)
   pandaState_prev = None
