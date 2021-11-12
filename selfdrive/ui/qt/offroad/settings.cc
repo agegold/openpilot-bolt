@@ -109,7 +109,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
   connect(dcamBtn, &ButtonControl::clicked, [=]() { emit showDriverView(); });
 
   QString resetCalibDesc = "오픈파일럿은 좌우로 4° 위아래로 5° 를 보정합니다. 그 이상의 경우 보정이 필요합니다.";
-  auto resetCalibBtn = new ButtonControl("캘리브레이션,라이브 파라메타 초기화", "초기화", resetCalibDesc);
+  auto resetCalibBtn = new ButtonControl("캘리브레이션,라이브 파라메타 초기화1", "초기화", resetCalibDesc);
   connect(resetCalibBtn, &ButtonControl::clicked, [=]() {
     if (ConfirmationDialog::confirm("캘리브레이션과 라이브파라미터를 초기화 하시겠습니까?", this)) {
       Params().remove("CalibrationParams");
