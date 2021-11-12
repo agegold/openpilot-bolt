@@ -115,7 +115,6 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
       Params().remove("CalibrationParams");
       Params().remove("LiveParameters");
       Hardware::reboot();
-      }
     }
   });
       
