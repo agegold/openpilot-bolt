@@ -117,7 +117,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
       Hardware::reboot();
       }
     }
-});
+  });
       
   
   // offroad-only buttons
