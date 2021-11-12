@@ -207,17 +207,6 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
   });
 
 
-
-  QPushButton *gitpull_btn = new QPushButton("소프트웨어 업데이트와 재부팅", "실행");
-  gitpull_btn->setObjectName("gitpull_btn");
-  power_layout->addWidget(gitpull_btn);
-  QObject::connect(gitpull_btn, &QPushButton::clicked, [=]() {
-    std::system(gitpull);
-    if (ConfirmationDialog::confirm("업데이가 완료 되었습니다. 재부팅 하시겠습니까?", this)) {
-      QTimer::singleShot(1000, []() { Hardware::reboot(); });
-    }
-  });
-
   setStyleSheet(R"(
     QPushButton {
       height: 120px;
