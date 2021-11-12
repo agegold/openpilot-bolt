@@ -114,11 +114,10 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
     if (ConfirmationDialog::confirm("캘리브레이션과 라이브파라미터를 초기화 하시겠습니까?", this)) {
       Params().remove("CalibrationParams");
       Params().remove("LiveParameters");
-      QTimer::singleShot(1000, []() {
-        Hardware::reboot();
+      Hardware::reboot();
       }
     }
-  });
+});
       
   
   // offroad-only buttons
