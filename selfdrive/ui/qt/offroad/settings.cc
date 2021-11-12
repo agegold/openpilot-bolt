@@ -116,6 +116,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
       Params().remove("LiveParameters");
       QTimer::singleShot(1000, []() {
         Hardware::reboot();
+      }
     }
   });
       
