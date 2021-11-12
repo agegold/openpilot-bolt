@@ -119,20 +119,6 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
     }
   });
       
-  QHBoxLayout *power_layout = new QHBoxLayout();
-  power_layout->setSpacing(30);
-
-  const char* gitpull = "sh /data/openpilot/gitpull.sh";
-  QPushButton *gitpull_btn = new QPushButton("소프트웨어 업데이트와 재부팅", "실행");
-  gitpull_btn->setObjectName("gitpull_btn");
-  power_layout->addWidget(gitpull_btn);
-  QObject::connect(gitpull_btn, &QPushButton::clicked, [=]() {
-    std::system(gitpull);
-    if (ConfirmationDialog::confirm("업데이가 완료 되었습니다. 재부팅 하시겠습니까?", this)) {
-      QTimer::singleShot(1000, []() { Hardware::reboot(); });
-    }
-  });
-
   
   // offroad-only buttons
       
@@ -205,6 +191,30 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
   QObject::connect(poweroff_btn, &QPushButton::clicked, [=]() {
     if (ConfirmationDialog::confirm("전원을 종료하시겠습니까?", this)) {
       Hardware::poweroff();
+    }
+  });
+
+  QPushButton *gitpull_btn = new QPushButton("소프트웨어 업데이트");
+  poweroff_btn->setObjectName("gitpull_btn");
+  power_layout->addWidget(gitpull_btn);
+
+  const char* gitpull = "sh /data/openpilot/gitpull.sh";
+  QObject::connect(gitpull_btn, &QPushButton::clicked, [=]() {
+    if (ConfirmationDialog::confirm("업데이트가 완료 되었습니다. 재부팅 하시겠습니까?", this)) {
+      QTimer::singleShot(1000, []() { 
+       Hardware::reboot(); });
+    }
+  });
+
+
+
+  QPushButton *gitpull_btn = new QPushButton("소프트웨어 업데이트와 재부팅", "실행");
+  gitpull_btn->setObjectName("gitpull_btn");
+  power_layout->addWidget(gitpull_btn);
+  QObject::connect(gitpull_btn, &QPushButton::clicked, [=]() {
+    std::system(gitpull);
+    if (ConfirmationDialog::confirm("업데이가 완료 되었습니다. 재부팅 하시겠습니까?", this)) {
+      QTimer::singleShot(1000, []() { Hardware::reboot(); });
     }
   });
 
