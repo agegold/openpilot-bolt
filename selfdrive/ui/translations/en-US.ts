@@ -769,11 +769,11 @@ Please note:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Driver Camera</source>
+        <source>운전자 카메라</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>PREVIEW</source>
+        <source>미리보기</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
