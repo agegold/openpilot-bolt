@@ -14,7 +14,6 @@ class CarState(CarStateBase):
 
     self.crz_btns_counter = 0
     self.acc_active_last = False
-    self.low_speed_alert = False
     self.lkas_allowed_speed = False
     self.lkas_disabled = False
 
@@ -81,12 +80,6 @@ class CarState(CarStateBase):
     # dp
     ret.cruiseActualEnabled = ret.cruiseState.enabled
     ret.cruiseState.speed = self.cruise_speed
-
-    if ret.cruiseState.enabled:
-      if not self.lkas_allowed_speed and self.acc_active_last:
-        self.low_speed_alert = True
-      else:
-        self.low_speed_alert = False
 
     # Check if LKAS is disabled due to lack of driver torque when all other states indicate
     # it should be enabled (steer lockout). Don't warn until we actually get lkas active
